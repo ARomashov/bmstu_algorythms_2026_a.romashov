@@ -10,9 +10,6 @@ class LinkedList:
 
         for elem in arr:
             self.push(elem)
-
-    def get_head(self):
-        return self.head
     
     def push(self, value):
         node = Node(value)
@@ -36,20 +33,23 @@ def find_intersection(head_A, head_B):
     return pA
 
 # Тесты
-arr1, arr2 = [4, 1, 8, 4, 5], [5, 6, 1, 8, 4, 5]
 list1 = LinkedList([4])
 list2 = LinkedList([5, 6])
 intersection = LinkedList([1, 8, 4, 5])
-#list1.tail.next = intersection.get_head()
-#list2.tail.next = intersection.get_head()
+list1.tail.next = intersection.head
+list2.tail.next = intersection.head
 
-curr_node = list2.get_head()
-print(find_intersection(list1.get_head(), list2.get_head())) # None
+print(find_intersection(list1.head, list2.head).value)
 
 list1 = LinkedList([3, 6])
 list2 = LinkedList([1])
 intersection = LinkedList([8, 9, 6])
-list1.tail.next = intersection.get_head()
-list2.tail.next = intersection.get_head()
+list1.tail.next = intersection.head
+list2.tail.next = intersection.head
 
-print(find_intersection(list1.get_head(), list2.get_head()).value)
+print(find_intersection(list1.head, list2.head).value)
+
+arr1, arr2 = [1, 2, 3, 4, 5], [6, 7, 8, 9]
+list1 = LinkedList(arr1)
+list2 = LinkedList(arr2)
+print(find_intersection(list1.head, list2.head))
