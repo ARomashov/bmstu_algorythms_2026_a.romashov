@@ -21,12 +21,32 @@ class Stack:
         
         top = self.top
         self.top = self.top.next
-        return top
+        return top.value
 
 
-def sort_stack():
-    return 
+def sort_stack(stack):
+    temp = Stack()
+    while stack.top is not None:
+        if temp.top is None:
+            temp.push(stack.pop())
+
+        stack_top = stack.pop()
+        if stack_top < temp.top.value:
+            stack.push(temp.pop())
+            temp.push(stack_top)
+        else:
+            temp.push(stack_top)
+    
+    while temp.top is not None:
+        stack.push(temp.pop())
+    return stack
 
 stack1 = Stack()
-for i in range(0, 10):
-    stack1.push(i)
+stack1.push(2)
+stack1.push(3)
+stack1.push(1)
+stack1.push(4)
+
+sorted_stack = sort_stack(stack1)
+while sorted_stack.top is not None:
+    print(sorted_stack.pop()) # Неправильно выводит (
